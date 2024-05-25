@@ -2,10 +2,7 @@ print("Welcome!")
 
 x = 0
 y = 0
-
-x = int(input("Enter the first number: "))
-operator = input("Enter the operator +, -, *, /: ")
-y = int(input("Enter the next number: "))
+# calculation = 0
 
 #calculator functions
 
@@ -31,14 +28,35 @@ operations = {
     "/": divide
 }
 
-if operator in operations:
-    print(f"Operator: {operator},  value: {operations[operator]}")
+x = int(input("Enter the first number: "))
+def continue_calculation():
+    global x
 
-else:
-    print("invalid operator!")
+    operator = input("Select the operator +, -, *, /: ")
+    y = int(input("Enter the next number: "))
 
-calculation = operations[operator](x,y)
+    if operator in operations:
+        print(f"Operator: {operator},  value: {operations[operator]}")
 
-print(f"{x} {operator} {y} = " + str(calculation))
+    else:
+        print("invalid operator!")
+
+    calculation = operations[operator](x,y)
+    print(calculation)
+
+    print(f"{x} {operator} {y} = " + str(calculation))
+
+    x = calculation
+
+continue_calculation()
+
+
+user_choice = input("Enter 'yes' to continue calculating or enter 'no' to exit.").lower()
+
+while user_choice == "yes":
+    continue_calculation()
+    user_choice = input("Enter 'yes' to continue calculating or enter 'no' to exit.").lower()
+if user_choice == "no":
+    print("end")
 
 
